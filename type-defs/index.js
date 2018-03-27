@@ -4,8 +4,8 @@ import records from './schema/records.graphql';
 import search from './schema/search.graphql';
 
 export const typeDefs = [
-  root,
   artists,
   records,
   search,
+  root,
 ];

@@ -49,3 +49,14 @@ type Album {
   titleTrack: Track!
   producer: String
 }
+
+input TrackInput {
+  name: String!
+  genres: [Genre]!
+  releasedAt: Date!
+  label: String
+  logo: URL
+  url: URL!
+  artists: [ID!]!
+  album: ID
+}
