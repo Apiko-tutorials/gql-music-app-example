@@ -1,12 +1,12 @@
-import { Albums, Artists, Tracks } from '../../db';
+import { Albums } from '../../db';
 
 export const Track = {
-  artists: ({ artists }) => Artists.find({ _id: { $in: artists } }),
+  artists: ({ artists }, args, { artistsLoader }) => artistsLoader.loadMany(artists),
   album: ({ _id }) => Albums.findOne({ tracks: _id }),
 };
 
 export const Album = {
-  tracks: ({ tracks }) => Tracks.find({ _id: { $in: tracks } }),
-  titleTrack: ({ titleTrack }) => Tracks.findById(titleTrack),
-  artist: ({ artist }) => Artists.findById(artist),
+  tracks: ({ tracks }, args, { tracksLoader }) => tracksLoader.loadMany(tracks),
+  titleTrack: ({ titleTrack }, args, { tracksLoader }) => tracksLoader.load(titleTrack),
+  artist: ({ artist }, args, { artistsLoader }) => artistsLoader.load(artist),
 };

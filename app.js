@@ -6,6 +6,7 @@ import { makeExecutableSchema } from 'graphql-tools';
 
 import { typeDefs } from './type-defs';
 import { resolvers } from './resolvers';
+import { createLoaders } from './resolvers/data-loaders';
 
 const app = express();
 
@@ -18,7 +19,7 @@ app.use(
   '/public',
   cors(),
   bodyParser.json(),
-  graphqlExpress({ schema }),
+  graphqlExpress({ schema, context: { ...createLoaders() } }),
 );
 
 if (process.env.NODE_ENV !== 'production') {

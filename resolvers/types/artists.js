@@ -21,5 +21,5 @@ export const BandParticipant = {
 };
 
 export const Band = {
-  members: ({ members }) => Artists.find({ _id: { $in: members } }),
+  members: ({ members }, args, { artistsLoader }) => artistsLoader.loadMany(members),
 };
