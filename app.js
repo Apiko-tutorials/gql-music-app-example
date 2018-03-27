@@ -5,12 +5,13 @@ import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 
 import { typeDefs } from './type-defs';
+import { resolvers } from './resolvers';
 
 const app = express();
 
 const schema = makeExecutableSchema({
   typeDefs,
-  resolvers: { Query: {} },
+  resolvers,
 });
 
 app.use(
