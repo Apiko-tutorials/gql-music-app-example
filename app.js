@@ -4,15 +4,13 @@ import cors from 'cors';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 
-import root from './type-defs/root.graphql';
+import { typeDefs } from './type-defs';
 
 const app = express();
 
 const schema = makeExecutableSchema({
-  typeDefs: [root],
-  resolvers: {
-    Query: { hello: () => 'world!' },
-  },
+  typeDefs,
+  resolvers: { Query: {} },
 });
 
 app.use(

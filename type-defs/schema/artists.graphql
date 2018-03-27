@@ -1,0 +1,58 @@
+enum ArtistRole {
+  VOCALIST
+  MUSICIAN
+}
+
+enum MusicianInstrument {
+  GUITAR
+  BASS_GUITAR
+  DRUM
+  PIANO
+  KEYBOARD
+  SAXOPHONE
+  KOBZA
+}
+
+enum ArtistTypesEnum {
+  SINGLE
+  BAND_PARTICIPANT
+  BAND
+}
+
+interface ArtistType {
+  type: ArtistTypesEnum!
+}
+
+type Single implements ArtistType {
+  type: ArtistTypesEnum!
+  birthDate: Date
+  instruments: [MusicianInstrument]
+}
+
+type BandParticipant implements ArtistType {
+  type: ArtistTypesEnum!
+  band: Artist!
+  roles: [ArtistRole]!
+  instruments: [MusicianInstrument]
+  birthDate: Date
+}
+
+type Band implements ArtistType {
+  type: ArtistTypesEnum!
+  members: [Artist!]!
+}
+
+type Artist {
+  _id: ID!
+  name: String!
+  artistType: ArtistType!
+  rating: Float!
+  startActivity: Date
+  endActivity: Date
+  country: String
+  photo: URL
+  website: URL
+  genres: [Genre]
+  tracks(limit: Int = 20, genres: [Genre!], sortBy: TrackSortable = NEW): [Track!]
+  albums: [Album!]
+}

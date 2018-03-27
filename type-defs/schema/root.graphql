@@ -1,0 +1,29 @@
+schema {
+  query: Query
+}
+
+scalar URL
+scalar Date
+
+type Query {
+  track(id: ID!): Track
+  tracks(
+    limit: Int = 20
+    sortBy: TrackSortable = RATING
+    genres: [Genre],
+    artists: [ID!]
+    countries: [String!]
+  ): [Track]
+  album(id: ID!): Album
+  albums(limit: Int = 20): [Album]
+  artists(
+    limit: Int = 20,
+    types: [ArtistTypesEnum] = [SINGLE, BAND]
+  ): [Artist!]
+  artist(id: ID!): Artist
+  search(
+    term: String = ""
+    genres: [Genre]
+    limit: Int = 50
+  ): [GlobalSearch]
+}

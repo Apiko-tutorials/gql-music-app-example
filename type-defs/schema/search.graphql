@@ -1,0 +1,1 @@
+union GlobalSearch = Artist | Track | Album

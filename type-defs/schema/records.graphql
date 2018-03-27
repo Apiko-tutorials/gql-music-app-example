@@ -1,0 +1,51 @@
+enum TrackSortable {
+  RATING
+  TRENDING
+  NEW
+}
+
+enum Genre {
+  POP
+  POP_ROCK
+  INDIE_POP
+  INDIE_ROCK
+  CLASSIC
+  JAZZ
+  BLUES
+  ROCK
+  ALTERNATIVE_ROCK
+  GARAGE_ROCK
+  HARD_ROCK
+  HEAVY_METAL
+  HIP_HOP
+  RAP
+  # ... and so on
+}
+
+type Track {
+  _id: ID! # Unique identifier
+  name: String!
+  rating: Float!
+  genres: [Genre]! # List of allowed genres
+  releasedAt: Date! # Date is a custom Scalar
+  label: String
+  logo: URL # URL is a custom Scalar too
+  url: URL!
+  artists: [Artist!]! # Non-nullable list of non-nullable Artists
+  album: Album
+  hypeCoefficient: Float!
+}
+
+type Album {
+  _id: ID!
+  name: String!
+  rating: Float!
+  genres: [Genre]!
+  releasedAt: Date!
+  label: String
+  logo: URL
+  artist: Artist
+  tracks: [Track!]!
+  titleTrack: Track!
+  producer: String
+}
