@@ -11,7 +11,8 @@
     "graphql": "^0.13.2",
     "graphql-iso-date": "^3.5.0",
     "graphql-tools": "^2.22.0",
-    "graphql-url": "^2.0.4"
+    "graphql-url": "^2.0.4",
+    "mongoose": "^5.0.12"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
